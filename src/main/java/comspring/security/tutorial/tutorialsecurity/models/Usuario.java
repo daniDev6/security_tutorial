@@ -28,6 +28,12 @@ public class Usuario implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    public Usuario(String username, String password, Role role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
         List<GrantedAuthority> listaAutorities = role.getPersmisosLista().stream().map(r->new SimpleGrantedAuthority(r.name())).collect(Collectors.toList());
