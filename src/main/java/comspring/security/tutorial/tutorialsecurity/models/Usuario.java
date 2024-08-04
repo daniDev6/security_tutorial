@@ -3,6 +3,7 @@ package comspring.security.tutorial.tutorialsecurity.models;
 import comspring.security.tutorial.tutorialsecurity.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 @Table(name = "usuarios")
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
