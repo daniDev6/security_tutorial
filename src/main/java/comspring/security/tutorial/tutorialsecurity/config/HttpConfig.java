@@ -29,20 +29,13 @@ public class HttpConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
-
-
-
-
-
-
         httpSecurity
                 .csrf(csrf->csrf.disable())
                 .sessionManagement(s->s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))//Indicamos que tipo de aplicacion sera en este caso, sin estado
                 .authenticationProvider(authenticationProvider)//funcion que voy a crear para delegar el tipo de authentificacion
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(request->{
-                    request.requestMatchers(HttpMethod.GET,"/usuario/hola").permitAll();
-                    request.requestMatchers(HttpMethod.POST,"/auth/primerUsuario").permitAll();//Indicamos que no requerira de ningun token
+                    request.requestMatchers(HttpMethod.GET,"/usuario/hola").permitAll();//prueba para saber si no se necesita token
                     request.requestMatchers(HttpMethod.GET,"/usuario/traer").hasAuthority(Persmisos.TRAER_USUARIO.name());//requerira q tenga la autoridad de traer usuarios
                     request.requestMatchers(HttpMethod.POST,"/usuario/login").permitAll();
                     request.anyRequest().authenticated();
