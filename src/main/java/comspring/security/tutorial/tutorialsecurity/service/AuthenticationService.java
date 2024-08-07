@@ -3,7 +3,11 @@ package comspring.security.tutorial.tutorialsecurity.service;
 import comspring.security.tutorial.tutorialsecurity.dto.dtoentrada.DtoAuthenticationRequest;
 import comspring.security.tutorial.tutorialsecurity.dto.dtoentrada.DtoAuthenticationResponse;
 import comspring.security.tutorial.tutorialsecurity.models.AuthenticationRequest;
-import comspring.security.tutorial.tutorialsecurity.models.AuthenticationResponse;
+
+
+
+
+
 import comspring.security.tutorial.tutorialsecurity.models.Usuario;
 import comspring.security.tutorial.tutorialsecurity.repository.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +30,7 @@ public class AuthenticationService {
         this.jwtService = jwtService;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager=authenticationManager;
-
     }
-
     public DtoAuthenticationResponse login(DtoAuthenticationRequest authenticationRequest1){
         AuthenticationRequest authenticationRequest=new AuthenticationRequest(authenticationRequest1);
         UsernamePasswordAuthenticationToken  authenticationToken=new UsernamePasswordAuthenticationToken(
@@ -40,8 +42,6 @@ public class AuthenticationService {
 
         return new DtoAuthenticationResponse(jwt);
     }
-
-
     public Map<String,Object> generateExtraClaims(Usuario usuario){
         Map<String,Object> extraClaim=new HashMap<>();
         extraClaim.put("name",usuario.getUsername());

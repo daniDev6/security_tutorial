@@ -1,5 +1,6 @@
 package comspring.security.tutorial.tutorialsecurity.models;
 
+import comspring.security.tutorial.tutorialsecurity.dto.dtoentrada.DtoUsuarioCrear;
 import comspring.security.tutorial.tutorialsecurity.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,12 @@ public class Usuario implements UserDetails {
         this.username = username;
         this.password = password;
         this.role = role;
+    }
+
+    public Usuario(DtoUsuarioCrear dtoUsuarioCrear) {
+        this.username= dtoUsuarioCrear.nombre();
+        this.password= dtoUsuarioCrear.contrasena();
+        this.role= dtoUsuarioCrear.role();
     }
 
     @Override

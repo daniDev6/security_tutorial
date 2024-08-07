@@ -37,6 +37,7 @@ public class HttpConfig {
                 .authorizeHttpRequests(request->{
                     request.requestMatchers(HttpMethod.GET,"/usuario/hola").permitAll();//prueba para saber si no se necesita token
                     request.requestMatchers(HttpMethod.GET,"/usuario/traer").hasAuthority(Persmisos.TRAER_USUARIO.name());//requerira q tenga la autoridad de traer usuarios
+                    request.requestMatchers(HttpMethod.POST,"/usuario/crear").hasAuthority(Persmisos.GUARDAR_USUARIO.name());
                     request.requestMatchers(HttpMethod.POST,"/usuario/login").permitAll();
                     request.anyRequest().authenticated();
                 });
